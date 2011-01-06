@@ -1,0 +1,17 @@
+escape ^Za
+defscrollback 5000
+caption always "%?%F%{= Yk}%:%{= ww}%?%-w%{=u Wk}%n %t%{-}%+w"
+
+# ターミナルのウィンドウタイトルが書き替わらないように
+# /etc/screenrc での設定を上書き。
+termcapinfo xterm hs@
+
+# erase background with current bg color
+#defbce "on"
+# do not use 'screen-bce'
+#term xterm-256color
+
+screen 3
+screen 2
+screen 1
+screen 0
