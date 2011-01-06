@@ -1,12 +1,15 @@
 DIR=dotfiles
 
 create_dot_files:
-	cd ~/$(DIR); mkdir vim/plugin
-	cd ~; ln -s $(DIR)/ctags .ctags; \
-		  ln -s $(DIR)/gdbinit .gdbinit; \
-		  ln -s $(DIR)/inputrc .inputrc; \
-		  ln -s $(DIR)/screenrc .screenrc; \
-		  ln -s $(DIR)/vimrc .vimrc; \
-		  ln -s $(DIR)/zprofile .zprofile; \
-		  ln -s $(DIR)/zshrc .zshrc; \
-		  ln -s $(DIR)/vim .vim
+	cd ~; \
+	    ln -si $(DIR)/ctags .ctags; \
+	    ln -si $(DIR)/gdbinit .gdbinit; \
+	    ln -si $(DIR)/inputrc .inputrc; \
+	    ln -si $(DIR)/screenrc .screenrc; \
+	    ln -si $(DIR)/vimrc .vimrc; \
+	    ln -si $(DIR)/zprofile .zprofile; \
+	    ln -si $(DIR)/zshrc .zshrc; \
+	    if [ -d .vim ]; \
+	    then echo ".vimは存在しています!"; \
+	    else ln -si $(DIR)/vim .vim; \
+	    fi

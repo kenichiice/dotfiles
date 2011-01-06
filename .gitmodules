@@ -10,3 +10,6 @@
 [submodule "vim/bundle/a.vim"]
 	path = vim/bundle/a.vim
 	url = https://github.com/vim-scripts/a.vim.git
+[submodule "vim/bundle/matchit"]
+	path = vim/bundle/matchit
+	url = https://github.com/vim-scripts/matchit.zip.git
