@@ -19,7 +19,7 @@ bindkey -e
 ulimit -c unlimited
 
 PROMPT="[%~]
-%m:%n%# "
+(%m) %n%# "
 #RPROMPT="[%~]"
 SPROMPT="correct: %R -> %r ? "
 

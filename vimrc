@@ -11,6 +11,7 @@ set softtabstop=4
 set expandtab
 set display=lastline
 
+set history=1000
 set scrolloff=100
 set backspace=indent,eol,start
 set wildmode=list:longest
@@ -28,11 +29,11 @@ filetype plugin indent on
 "autocmd FileType c,cpp syntax match CFunction /[a-zA-Z_]\w*(\@=/
 "autocmd FileType c,cpp hi CFunction ctermfg=darkcyan
 "autocmd FileType c,cpp nmap <C-]> <C-]>ww
-autocmd QuickfixCmdPost vimgrep copen 20
+autocmd QuickfixCmdPost vimgrep copen 15
 "autocmd BufRead,BufNewFile tmp*hg setfiletype hg
 
 "set cinoptions=g0,+2s
-set cinoptions=:0,g0,t0,(1s
+set cinoptions=:0,g0,t0
 set formatoptions=qro
 
 set listchars=tab:^\ ,trail:_
@@ -73,9 +74,28 @@ nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*
 
 set tags=tags;$HOME
 nnoremap <C-]> g<C-]>
+nnoremap <C-W><C-]> <C-W>g<C-]>
+nnoremap <C-W>] <C-W>g<C-]>
 
 " for include file searching
 set path+=include
+
+" pathogen.vim
+call pathogen#runtime_append_all_bundles()
+call pathogen#helptags()
+
+" neocomplcache
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_auto_select = 1
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-e> neocomplcache#cancel_popup()
+
+" unite.vim
+let g:unite_enable_start_insert = 1
+let g:unite_winheight = 10
+let g:unite_enable_ignore_case = 1
+let g:unite_enable_smart_case = 1
+noremap <C-N> :Unite buffer<CR>
 
 "for yankring
 "set viminfo+=!
@@ -83,15 +103,14 @@ set path+=include
 "let yankring_replace_n_nkey = ',n'
 
 " fuzzyfinder
-nnoremap <C-N> :FufBuffer!<CR>
-nnoremap <C-P> :FufMruFile!<CR>
-"let g:FuzzyFinderOptions = { 'Base':{}, 'Buffer':{}, 'File':{}, 'Dir':{}, 'MruFile':{}, 'MruCmd':{}, 'Bookmark':{}, 'Tag':{}, 'TaggedFile':{}}
-let g:fuf_keyOpenSplit = '<C-s>'
-let g:fuf_keyPrevPattern = ''
-let g:fuf_modesDisable = [ 'mrucmd' ]
+"nnoremap <C-N> :FufBuffer!<CR>
+"nnoremap <C-P> :FufMruFile!<CR>
+"let g:fuf_keyOpenSplit = '<C-s>'
+"let g:fuf_keyPrevPattern = ''
+"let g:fuf_modesDisable = [ 'mrucmd' ]
 
 " autocomplpop
-let g:acp_ignorecaseOption = 0
+"let g:acp_ignorecaseOption = 0
 
 " netrw
 let g:netrw_liststyle = 3
