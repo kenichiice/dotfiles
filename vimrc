@@ -31,6 +31,7 @@ filetype plugin indent on
 "autocmd FileType c,cpp nmap <C-]> <C-]>ww
 autocmd QuickfixCmdPost vimgrep copen 15
 "autocmd BufRead,BufNewFile tmp*hg setfiletype hg
+autocmd FileType gitcommit syntax off
 
 "set cinoptions=g0,+2s
 set cinoptions=:0,g0,t0
@@ -72,6 +73,11 @@ set statusline=%<%f\ %m%r%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l/%L,%v
 nnoremap <Space> <C-F>
 nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*
 
+cnoremap <C-A> <Home>
+cnoremap <C-F> <Right>
+cnoremap <C-B> <Left>
+cnoremap <C-D> <Del>
+
 set tags=tags;$HOME
 nnoremap <C-]> g<C-]>
 nnoremap <C-W><C-]> <C-W>g<C-]>
@@ -93,8 +99,11 @@ inoremap <expr><C-e> neocomplcache#cancel_popup()
 " unite.vim
 let g:unite_enable_start_insert = 1
 let g:unite_winheight = 10
-let g:unite_enable_ignore_case = 1
-let g:unite_enable_smart_case = 1
+"let g:unite_enable_ignore_case = 1
+"let g:unite_enable_smart_case = 1
+call unite#set_buffer_name_option('default', 'ignorecase', 1)
+call unite#set_buffer_name_option('default', 'smartcase', 1)
+
 noremap <C-N> :Unite buffer<CR>
 
 "for yankring
