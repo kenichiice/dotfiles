@@ -8,7 +8,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/unite.vim'
 Bundle 'a.vim'
 Bundle 'matchit.zip'
 Bundle 'taglist.vim'
@@ -33,6 +32,9 @@ set backspace=indent,eol,start
 set wildmode=list:longest
 "set ambiwidth=double
 set ambiwidth=single
+set undodir=~/.vimundo
+set undofile
+set virtualedit+=block
 
 set makeprg=env\ LANG=C\ make
 
@@ -56,11 +58,10 @@ set listchars=tab:^\ ,trail:_
 set list
 highlight SpecialKey ctermfg=7
 
-highlight zenkakuda ctermbg=7
-match zenkakuda /　/
-"syntax match zenkakuda /　/
-"highlight nagasugi ctermbg=yellow
-"syntax match nagasugi /.\%>81v/
+highlight nagasugi ctermfg=red
+autocmd FileType c,cpp call matchadd("nagasugi", '.\%>81v')
+highlight zenkakuda ctermbg=gray
+autocmd VimEnter,WinEnter * call matchadd("zenkakuda", '\%u3000')
 
 highlight DiffText ctermfg=white ctermbg=red
 highlight DiffChange ctermfg=white ctermbg=magenta
@@ -151,11 +152,11 @@ let g:netrw_liststyle = 3
 " taglist.vim
 "let Tlist_Auto_Open=1
 let Tlist_Inc_Winwidth=0
-let Tlist_WinWidth=35
+""let Tlist_WinWidth=35
 "let Tlist_Display_Tag_Scope = 0
 ""let Tlist_Display_Prototype=1
 ""let Tlist_Exit_OnlyWindow=1
-let Tlist_Use_Horiz_Window = 1
+""let Tlist_Use_Horiz_Window = 1
 ""let Tlist_Use_Right_Window = 1
 nnoremap <silent> \f :TlistToggle<CR>
 

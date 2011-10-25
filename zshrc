@@ -14,12 +14,17 @@ export GREP_OPTIONS=--color=auto
 
 autoload -U compinit
 compinit
+
 bindkey -e
+#bindkey -r '^W'
+#bindkey '^W^F' forward-word
+#bindkey '^W^B' backward-word
+#bindkey '^W^D' kill-word
 
 ulimit -c unlimited
 
 PROMPT="[%~]
-(%m) %n%# "
+(%U%m%u) %n%# "
 #RPROMPT="[%~]"
 SPROMPT="correct: %R -> %r ? "
 
