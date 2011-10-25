@@ -1,4 +1,20 @@
 set fileencodings=utf-8,euc-jp,cp932
+
+"" vundle
+set nocompatible               " be iMproved
+filetype off                   " required!
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+Bundle 'gmarik/vundle'
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/unite.vim'
+Bundle 'a.vim'
+Bundle 'matchit.zip'
+Bundle 'taglist.vim'
+Bundle 'vcscommand.vim'
+filetype plugin indent on     " required! 
+
 set hlsearch
 set incsearch
 
@@ -23,7 +39,6 @@ set makeprg=env\ LANG=C\ make
 syntax on
 colorscheme peachpuff
 
-filetype plugin indent on
 "autocmd FileType ruby set softtabstop=2 shiftwidth=2 autoindent
 "autocmd FileType c,cpp set cindent
 "autocmd FileType c,cpp syntax match CFunction /[a-zA-Z_]\w*(\@=/
@@ -87,9 +102,9 @@ nnoremap <C-W>] <C-W>g<C-]>
 set path+=include
 
 " pathogen.vim
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
-
+"""call pathogen#runtime_append_all_bundles()
+"""call pathogen#helptags()
+"""
 " neocomplcache
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_auto_select = 1
