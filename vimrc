@@ -8,6 +8,7 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/unite.vim'
+Bundle 'vim-jp/vimdoc-ja'
 Bundle 'a.vim'
 Bundle 'matchit.zip'
 Bundle 'taglist.vim'
@@ -37,6 +38,9 @@ set undofile
 set virtualedit+=block
 
 set makeprg=env\ LANG=C\ make
+
+" helpがひけないので。http://d.hatena.ne.jp/vikke_bsd/20110926
+set notagbsearch
 
 syntax on
 colorscheme peachpuff
@@ -85,6 +89,9 @@ set splitbelow
 
 set laststatus=2
 set statusline=%<%f\ %m%r%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l/%L,%v
+highlight StatusLine cterm=NONE ctermfg=white ctermbg=blue
+highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=black
+highlight VertSplit cterm=NONE ctermfg=white ctermbg=black
 
 nnoremap <Space> <C-F>
 nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*
