@@ -27,6 +27,7 @@ PROMPT="[%~]
 (%U%m%u) %n%# "
 #RPROMPT="[%~]"
 SPROMPT="correct: %R -> %r ? "
+REPORTTIME=3
 
 HISTFILE=~/.zsh_history
 HISTSIZE=100000
@@ -35,6 +36,7 @@ setopt hist_ignore_dups
 setopt share_history
 
 setopt auto_pushd
+
 #setopt correct
 setopt list_packed
 setopt nolistbeep
