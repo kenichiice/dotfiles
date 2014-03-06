@@ -7,10 +7,10 @@ case "${TERM}" in screen)
     }
 esac
 
-#PATH=~/bin:$PATH
 export EDITOR=vim
 export PAGER=less
 export GREP_OPTIONS=--color=auto
+export TERM=xterm-256color
 
 autoload -U compinit
 compinit
@@ -56,6 +56,7 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias ls="ls -F"
+alias screen="screen -A"
 
 if [ -e ~/.zshrc_local ]; then
     source ~/.zshrc_local
