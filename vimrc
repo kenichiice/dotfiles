@@ -80,7 +80,7 @@ autocmd QuickfixCmdPost vimgrep copen 10
 autocmd FileType gitcommit syntax off
 
 "set cinoptions=g0,+2s
-set cinoptions=:0,g0,t0
+"set cinoptions=:0,g0,t0
 set formatoptions=qro
 
 set listchars=tab:^\ ,trail:_
@@ -120,7 +120,7 @@ highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=black
 highlight VertSplit cterm=NONE ctermfg=white ctermbg=black
 
 nnoremap <Space> <C-F>
-nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*
+nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*.{c,cc,cpp,h,hpp}
 
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
@@ -146,10 +146,10 @@ set path+=include
 "inoremap <expr><C-e> neocomplcache#cancel_popup()
 
 "neocomplete
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_auto_select = 1
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-e> neocomplete#cancel_popup()
+"let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_auto_select = 0
+"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+"inoremap <expr><C-e> neocomplete#cancel_popup()
 
 " unite.vim
 let g:unite_enable_start_insert = 1
