@@ -6,6 +6,7 @@ create_dot_files:
 	    ln -si $(DIR)/gdbinit .gdbinit; \
 	    ln -si $(DIR)/inputrc .inputrc; \
 	    ln -si $(DIR)/screenrc .screenrc; \
+	    ln -si $(DIR)/tmux.conf .tmux.conf; \
 	    ln -si $(DIR)/vimrc .vimrc; \
 	    ln -si $(DIR)/zprofile .zprofile; \
 	    ln -si $(DIR)/zshrc .zshrc; \

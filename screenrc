@@ -6,6 +6,8 @@ caption always "%?%F%{= Yk}%:%{= ww}%?%-w%{=u Wk}%n %t%{-}%+w"
 # /etc/screenrc での設定を上書き。
 termcapinfo xterm hs@
 
+hardstatus off
+
 # erase background with current bg color
 #defbce "on"
 # do not use 'screen-bce'

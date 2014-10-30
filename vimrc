@@ -6,22 +6,27 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'itchyny/lightline.vim'
+"Bundle 'itchyny/lightline.vim'
 "Bundle 'kana/vim-smartinput'
-Bundle 'LeafCage/unite-gvimrgb'
-Bundle 'Shougo/neocomplete'
+"Bundle 'Shougo/neocomplete'
 Bundle 'Shougo/unite.vim'
 Bundle 'Shougo/unite-outline'
+"Bundle 'Shougo/unite-build'
 Bundle 'Shougo/vimproc'
 Bundle 'vim-jp/vimdoc-ja'
-Bundle 'w0ng/vim-hybrid'
-Bundle 'yuratomo/bg.vim'
+"Bundle 'w0ng/vim-hybrid'
+Bundle 'tpope/vim-dispatch'
+Bundle 't9md/vim-quickhl'
 Bundle 'a.vim'
 Bundle 'matchit.zip'
+Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
+Bundle 'cohama/agit.vim'
 "Bundle 'summerfruit256.vim'
 "Bundle 'taglist.vim'
 Bundle 'vcscommand.vim'
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'Yggdroot/indentLine'
 filetype plugin indent on     " required! 
 
 if !has('gui_running')
@@ -33,6 +38,7 @@ set incsearch
 
 set mouse=a
 set ttymouse=xterm2
+"set t_ti= t_te=
 
 set tabstop=8
 set shiftwidth=4
@@ -44,8 +50,8 @@ set history=1000
 set scrolloff=100
 set backspace=indent,eol,start
 set wildmode=list:longest
-"set ambiwidth=double
-set ambiwidth=single
+set ambiwidth=double
+"set ambiwidth=single
 
 " 以下は vim 7.3 が必要
 set undodir=~/.vimundo
@@ -88,7 +94,7 @@ set list
 highlight SpecialKey ctermfg=7
 
 highlight nagasugi ctermfg=red
-autocmd FileType c,cpp call matchadd("nagasugi", '.\%>81v')
+"autocmd FileType c,cpp call matchadd("nagasugi", '.\%>81v')
 highlight zenkakuda ctermbg=gray
 autocmd VimEnter,WinEnter * call matchadd("zenkakuda", '\%u3000')
 
@@ -115,9 +121,55 @@ set splitbelow
 set laststatus=2
 set showtabline=2
 set statusline=%<%f\ %m%r%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l/%L,%v
-highlight StatusLine cterm=NONE ctermfg=white ctermbg=blue
-highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=black
-highlight VertSplit cterm=NONE ctermfg=white ctermbg=black
+set tabline=%!MakeTabLine()
+highlight StatusLine cterm=NONE ctermfg=white ctermbg=32
+highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=grey
+highlight VertSplit cterm=NONE ctermfg=white ctermbg=grey
+highlight TabLine cterm=NONE ctermfg=white ctermbg=162 cterm=bold
+highlight TabLineFill cterm=NONE ctermfg=white ctermbg=darkgrey
+highlight TabLineSel cterm=NONE ctermfg=white ctermbg=grey
+
+function! s:tabpage_label(n)
+  " n 番目のタブのラベルを返す
+  " t:title と言う変数があったらそれを使う
+  let title = gettabvar(a:n, 'title')
+  if title !=# ''
+    return title
+  endif
+
+  " タブページ内のバッファのリスト
+  let bufnrs = tabpagebuflist(a:n)
+
+  " カレントタブページかどうかでハイライトを切り替える
+  let hi = a:n is tabpagenr() ? '%#TabLineSel#' : '%#TabLineFill#'
+
+  " バッファが複数あったらバッファ数を表示
+  let no = ''
+  "let no = len(bufnrs)
+  "if no is 1
+  "  let no = ''
+  "endif
+  " タブページ内に変更ありのバッファがあったら '+' を付ける
+  let mod = len(filter(copy(bufnrs), 'getbufvar(v:val, "&modified")')) ? '+' : ''
+  let sp = (no . mod) ==# '' ? '' : ' '  " 隙間空ける
+
+  " カレントバッファ
+  let curbufnr = bufnrs[tabpagewinnr(a:n) - 1]  " tabpagewinnr() は 1 origin
+  let fname = bufname(curbufnr)
+
+  let label = no . mod . sp . fname
+
+  return '%' . a:n . 'T' . hi . ' '. label . ' %T%#TabLineFill#'
+endfunction
+
+function! MakeTabLine()
+  let titles = map(range(1, tabpagenr('$')), 's:tabpage_label(v:val)')
+  let sep = ''  " タブ間の区切り
+  let tabpages = join(titles, sep) . sep . '%#TabLineFill#%T'
+  let left = '%#TabLine#' . fnamemodify(getcwd(), ":~")
+  let right = ''
+  return left . sep . tabpages . '%=' . right
+endfunction
 
 nnoremap <Space> <C-F>
 nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*.{c,cc,cpp,h,hpp}
@@ -133,7 +185,9 @@ nnoremap <C-W><C-]> <C-W>g<C-]>
 nnoremap <C-W>] <C-W>g<C-]>
 
 " for include file searching
-set path+=include
+"set path+=include
+"set path+=/usr/include/c++/4.8.2
+"set path+=/home/kenichi/include
 
 " pathogen.vim
 """call pathogen#runtime_append_all_bundles()
@@ -158,11 +212,20 @@ let g:unite_winheight = 10
 "let g:unite_enable_smart_case = 1
 "call unite#set_buffer_name_option('default', 'ignorecase', 1)
 "call unite#set_buffer_name_option('default', 'smartcase', 1)
-call unite#custom#profile('source/buffer', 'ignorecase', 1)
-call unite#custom#profile('source/buffer', 'smartcase', 1)
+"call unite#custom#profile('source/buffer', 'context.ignorecase', 1)
+"call unite#custom#profile('source/buffer', 'context.smartcase', 1)
+"call unite#custom#profile('source/buffer', 'context', {
+call unite#custom#profile('default', 'context', {
+            \   'ignorecase' : 1,
+            \   'smartcase' : 1,
+            \ })
 
 noremap <C-N> :Unite buffer<CR>
 nnoremap <silent> \f :Unite outline<CR>
+
+" quickhl
+nmap m <Plug>(quickhl-manual-this)
+nmap <Leader>m <Plug>(quickhl-manual-reset)
 
 "for yankring
 "set viminfo+=!
@@ -210,40 +273,43 @@ let Tlist_Inc_Winwidth=0
 """map  \f   <Plug>ShowFunc
 """map! \f   <Plug>ShowFunc 
 
-" lightline
-let g:lightline = {
-            \ 'colorscheme': 'kenichi',
-            \ 'component': {
-            \   'rows': '%L',
-            \   'pwd': '%.55(%{fnamemodify(getcwd(), ":~")}%)',
-            \ },
-            \ 'tab_component': {
-            \   'relativepath': '%f',
-            \ },
-            \ 'separator': { 'left': '■', 'right': '■' },
-            \ 'subseparator': { 'left': '|', 'right': '|' },
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'relativepath', 'modified', 'readonly' ],
-            \             [ 'fileencoding' ],
-            \             [ 'fileformat' ] ],
-            \   'right': [ [ 'lineinfo' ], [ 'rows' ], [ 'filetype' ] ]
-            \ },
-            \ 'inactive': {
-            \   'left': [ [ 'relativepath', 'modified', 'readonly'],
-            \             [ 'fileencoding'],
-            \             [ 'fileformat'] ],
-            \   'right': [ [ 'lineinfo' ], [ 'rows' ], [ 'filetype' ] ]
-            \ },
-            \ 'tabline': {
-            \   'left': [ [ 'pwd' ], [ 'tabs' ] ],
-            \   'right': [ [] ]
-            \ },
-            \ 'tab': {
-            \   'active': [ 'filename' ],
-            \   'inactive': [ 'filename' ]
-            \ },
-            \ }
+"" lightline
+"let g:lightline = {
+"            \ 'colorscheme': 'kenichi',
+"            \ 'component': {
+"            \   'rows': '%L',
+"            \   'pwd': '%.55(%{fnamemodify(getcwd(), ":~")}%)',
+"            \   'bom': '%{&bomb?"BOM":""}',
+"            \ },
+"            \ 'tab_component': {
+"            \   'relativepath': '%f',
+"            \ },
+"            \ 'separator': { 'left': '●', 'right': '●' },
+"            \ 'subseparator': { 'left': '|', 'right': '|' },
+"            \ 'active': {
+"            \   'left': [ [ 'mode', 'paste' ],
+"            \             [ 'relativepath', 'modified', 'readonly' ],
+"            \             [ 'bom' ],
+"            \             [ 'fileencoding' ],
+"            \             [ 'fileformat' ] ],
+"            \   'right': [ [ 'lineinfo' ], [ 'rows' ], [ 'filetype' ] ]
+"            \ },
+"            \ 'inactive': {
+"            \   'left': [ [ 'relativepath', 'modified', 'readonly'],
+"            \             [ 'bom' ],
+"            \             [ 'fileencoding'],
+"            \             [ 'fileformat'] ],
+"            \   'right': [ [ 'lineinfo' ], [ 'rows' ], [ 'filetype' ] ]
+"            \ },
+"            \ 'tabline': {
+"            \   'left': [ [ 'pwd' ], [ 'tabs' ] ],
+"            \   'right': [ [] ]
+"            \ },
+"            \ 'tab': {
+"            \   'active': [ 'filename' ],
+"            \   'inactive': [ 'filename' ]
+"            \ },
+"            \ }
 
 if filereadable($HOME."/.vimrc_local")
     source $HOME/.vimrc_local
