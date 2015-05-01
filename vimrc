@@ -1,7 +1,8 @@
-set fileencodings=utf-8,euc-jp,cp932
+set fileencodings=cp932,utf-8,euc-jp
+scriptencoding utf-8
 
 "" vundle
-set nocompatible               " be iMproved
+"set nocompatible               " be iMproved
 filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -19,6 +20,7 @@ Bundle 'tpope/vim-dispatch'
 Bundle 't9md/vim-quickhl'
 Bundle 'a.vim'
 Bundle 'matchit.zip'
+"Bundle 'diffchar.vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'gregsexton/gitv'
 Bundle 'cohama/agit.vim'
@@ -66,25 +68,32 @@ set notagbsearch
 
 syntax on
 set background=light
-autocmd ColorScheme * highlight Search ctermfg=white ctermbg=70
-autocmd ColorScheme * highlight Statement ctermfg=20 cterm=bold
-autocmd ColorScheme * highlight Todo ctermfg=white ctermbg=211
 "colorscheme hybrid-light
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
 "colorscheme solarized
 colorscheme peachpuff
 
+augroup vimrc
+    autocmd!
+    autocmd ColorScheme * highlight Search ctermfg=white ctermbg=70
+    autocmd ColorScheme * highlight Statement ctermfg=20 cterm=bold
+    autocmd ColorScheme * highlight Todo ctermfg=white ctermbg=211
 
-"autocmd FileType ruby set softtabstop=2 shiftwidth=2 autoindent
-"autocmd FileType c,cpp set cindent
-"autocmd FileType c,cpp syntax match CFunction /[a-zA-Z_]\w*(\@=/
-"autocmd FileType c,cpp hi CFunction ctermfg=darkcyan
-"autocmd FileType c,cpp nmap <C-]> <C-]>ww
-autocmd QuickfixCmdPost vimgrep copen 10
-"autocmd BufRead,BufNewFile tmp*hg setfiletype hg
-autocmd FileType gitcommit syntax off
+    "autocmd FileType ruby set softtabstop=2 shiftwidth=2 autoindent
+    "autocmd FileType c,cpp set cindent
+    "autocmd FileType c,cpp syntax match CFunction /[a-zA-Z_]\w*(\@=/
+    "autocmd FileType c,cpp hi CFunction ctermfg=darkcyan
+    "autocmd FileType c,cpp nmap <C-]> <C-]>ww
+    autocmd QuickfixCmdPost vimgrep copen 10
+    "autocmd BufRead,BufNewFile tmp*hg setfiletype hg
+    autocmd FileType gitcommit syntax off
 
+    "highlight nagasugi ctermfg=red
+    "autocmd FileType c,cpp call matchadd("nagasugi", '.\%>81v')
+    highlight zenkakuda ctermbg=gray
+    autocmd VimEnter,WinEnter * call matchadd("zenkakuda", '\%u3000')
+augroup END
 "set cinoptions=g0,+2s
 "set cinoptions=:0,g0,t0
 set formatoptions=qro
@@ -92,11 +101,6 @@ set formatoptions=qro
 set listchars=tab:^\ ,trail:_
 set list
 highlight SpecialKey ctermfg=7
-
-highlight nagasugi ctermfg=red
-"autocmd FileType c,cpp call matchadd("nagasugi", '.\%>81v')
-highlight zenkakuda ctermbg=gray
-autocmd VimEnter,WinEnter * call matchadd("zenkakuda", '\%u3000')
 
 highlight DiffText ctermfg=white ctermbg=red
 highlight DiffChange ctermfg=white ctermbg=magenta
@@ -227,6 +231,13 @@ nnoremap <silent> \f :Unite outline<CR>
 nmap m <Plug>(quickhl-manual-this)
 nmap <Leader>m <Plug>(quickhl-manual-reset)
 
+" diffchar
+let g:DiffUnit = "Word3"
+""nnoreamp <Leader>c <Plug>ToggleDiffCharAllLines
+nmap <silent> <Leader>c <Plug>ToggleDiffCharCurrentLine
+""nnoremap <C-y> <Plug>ToggleDiffCharCurrentLine
+"nmap <silent> <C-y> <Plug>ToggleDiffCharAllLines
+
 "for yankring
 "set viminfo+=!
 "let yankring_replace_n_pkey = ',p'
@@ -256,7 +267,7 @@ let g:netrw_liststyle = 3
 
 " taglist.vim
 "let Tlist_Auto_Open=1
-let Tlist_Inc_Winwidth=0
+"let Tlist_Inc_Winwidth=0
 ""let Tlist_WinWidth=35
 "let Tlist_Display_Tag_Scope = 0
 ""let Tlist_Display_Prototype=1
