@@ -10,6 +10,8 @@ create_dot_files:
 	    ln -si $(DIR)/vimrc .vimrc; \
 	    ln -si $(DIR)/zprofile .zprofile; \
 	    ln -si $(DIR)/zshrc .zshrc; \
+	    ln -si $(DIR)/bashrc .bashrc; \
+	    ln -si $(DIR)/bash_profile .bash_profile; \
 	    if [ -d .vim ]; \
 	    then echo ".vimは存在しています!"; \
 	    else ln -si $(DIR)/vim .vim; \

@@ -11,7 +11,8 @@ alias ls='ls -F'
 alias cp='cp -i'
 alias mv='mv -i'
 alias rm='rm -i'
-alias vi='/usr/local/bin/vim'
-alias vim='/usr/local/bin/vim'
+alias vi=vim
+#alias vi='/usr/local/bin/vim'
+#alias vim='/usr/local/bin/vim'
 #alias make='make -j10'
 
