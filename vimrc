@@ -1,4 +1,4 @@
-set fileencodings=cp932,utf-8,euc-jp
+set fileencodings=utf-8,cp932,euc-jp
 scriptencoding utf-8
 
 "" vundle
@@ -29,6 +29,9 @@ Bundle 'cohama/agit.vim'
 Bundle 'vcscommand.vim'
 "Bundle 'nathanaelkane/vim-indent-guides'
 "Bundle 'Yggdroot/indentLine'
+Bundle 'cohlin/vim-colorschemes'
+Bundle 'muellan/am-colors'
+Bundle 'freeo/vim-kalisi'
 filetype plugin indent on     " required! 
 
 if !has('gui_running')
@@ -72,13 +75,15 @@ set background=light
 "let g:solarized_termcolors=256
 "let g:solarized_termtrans=1
 "colorscheme solarized
-colorscheme peachpuff
+"colorscheme peachpuff
+colorscheme kenichi
+"colorscheme xcode-default
 
 augroup vimrc
     autocmd!
-    autocmd ColorScheme * highlight Search ctermfg=white ctermbg=70
-    autocmd ColorScheme * highlight Statement ctermfg=20 cterm=bold
-    autocmd ColorScheme * highlight Todo ctermfg=white ctermbg=211
+    "autocmd ColorScheme * highlight Search ctermfg=white ctermbg=70
+    "autocmd ColorScheme * highlight Statement ctermfg=20 cterm=bold
+    "autocmd ColorScheme * highlight Todo ctermfg=white ctermbg=211
 
     "autocmd FileType ruby set softtabstop=2 shiftwidth=2 autoindent
     "autocmd FileType c,cpp set cindent
@@ -102,17 +107,17 @@ set listchars=tab:^\ ,trail:_
 set list
 highlight SpecialKey ctermfg=7
 
-highlight DiffText ctermfg=white ctermbg=red
-highlight DiffChange ctermfg=white ctermbg=magenta
-highlight DiffAdd ctermfg=white ctermbg=blue
+"highlight DiffText ctermfg=white ctermbg=red
+"highlight DiffChange ctermfg=white ctermbg=magenta
+"highlight DiffAdd ctermfg=white ctermbg=blue
 
 "wrap
 "set nowrap
 "set sidescroll=1
 "set listchars+=precedes:<,extends:>
 
-highlight Folded ctermfg=darkmagenta
-highlight Folded ctermbg=NONE
+"highlight Folded ctermfg=darkmagenta
+"highlight Folded ctermbg=NONE
 "set foldmethod=syntax
 "set foldlevelstart=99
 
@@ -124,14 +129,14 @@ set splitbelow
 
 set laststatus=2
 set showtabline=2
-set statusline=%<%f\ %m%r%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l/%L,%v
+set statusline=%<%f\ %m%r%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l/%L,%v
 set tabline=%!MakeTabLine()
-highlight StatusLine cterm=NONE ctermfg=white ctermbg=32
-highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=grey
-highlight VertSplit cterm=NONE ctermfg=white ctermbg=grey
-highlight TabLine cterm=NONE ctermfg=white ctermbg=162 cterm=bold
-highlight TabLineFill cterm=NONE ctermfg=white ctermbg=darkgrey
-highlight TabLineSel cterm=NONE ctermfg=white ctermbg=grey
+"highlight StatusLine cterm=NONE ctermfg=white ctermbg=35
+"highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=grey
+"highlight VertSplit cterm=NONE ctermfg=white ctermbg=grey
+"highlight TabLine cterm=NONE ctermfg=white ctermbg=162 cterm=bold
+"highlight TabLineFill cterm=NONE ctermfg=white ctermbg=darkgrey
+"highlight TabLineSel cterm=NONE ctermfg=white ctermbg=grey
 
 function! s:tabpage_label(n)
   " n 番目のタブのラベルを返す
@@ -231,12 +236,12 @@ nnoremap <silent> \f :Unite outline<CR>
 nmap m <Plug>(quickhl-manual-this)
 nmap <Leader>m <Plug>(quickhl-manual-reset)
 
-" diffchar
-let g:DiffUnit = "Word3"
-""nnoreamp <Leader>c <Plug>ToggleDiffCharAllLines
-nmap <silent> <Leader>c <Plug>ToggleDiffCharCurrentLine
-""nnoremap <C-y> <Plug>ToggleDiffCharCurrentLine
-"nmap <silent> <C-y> <Plug>ToggleDiffCharAllLines
+"" diffchar
+"let g:DiffUnit = "Word3"
+"""nnoreamp <Leader>c <Plug>ToggleDiffCharAllLines
+"nmap <silent> <Leader>c <Plug>ToggleDiffCharCurrentLine
+"""nnoremap <C-y> <Plug>ToggleDiffCharCurrentLine
+""nmap <silent> <C-y> <Plug>ToggleDiffCharAllLines
 
 "for yankring
 "set viminfo+=!
