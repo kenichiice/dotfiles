@@ -50,6 +50,7 @@ set shiftwidth=4
 set softtabstop=4
 set expandtab
 set display=lastline
+set autoread
 
 set history=1000
 set scrolloff=100
@@ -107,6 +108,7 @@ set listchars=tab:^\ ,trail:_
 set list
 highlight SpecialKey ctermfg=7
 
+set fillchars+=diff:\ 
 "highlight DiffText ctermfg=white ctermbg=red
 "highlight DiffChange ctermfg=white ctermbg=magenta
 "highlight DiffAdd ctermfg=white ctermbg=blue
@@ -120,6 +122,8 @@ highlight SpecialKey ctermfg=7
 "highlight Folded ctermbg=NONE
 "set foldmethod=syntax
 "set foldlevelstart=99
+set foldtext=getline(v:foldstart).repeat('+',v:foldlevel)
+"set fillchars+=fold:=
 
 set whichwrap=b
 "set whichwrap=b,s,h,<,>,[,]
@@ -181,7 +185,7 @@ function! MakeTabLine()
 endfunction
 
 nnoremap <Space> <C-F>
-nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*.{c,cc,cpp,h,hpp}
+nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*.{c,cc,cpp,h,hpp,cu}
 
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
