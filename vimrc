@@ -7,31 +7,33 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 Bundle 'gmarik/vundle'
+Bundle 'Shougo/unite-outline'
+Bundle 'Shougo/unite.vim'
+Bundle 'Shougo/vimproc'
+"Bundle 'Shougo/neocomplete'
+"Bundle 'Shougo/unite-build'
+Bundle 'Vimjas/vim-python-pep8-indent'
+"Bundle 'Yggdroot/indentLine'
+Bundle 'a.vim'
+Bundle 'cohama/agit.vim'
+Bundle 'cohlin/vim-colorschemes'
+"Bundle 'diffchar.vim'
+Bundle 'freeo/vim-kalisi'
+Bundle 'gregsexton/gitv'
 "Bundle 'itchyny/lightline.vim'
 "Bundle 'kana/vim-smartinput'
-"Bundle 'Shougo/neocomplete'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/unite-outline'
-"Bundle 'Shougo/unite-build'
-Bundle 'Shougo/vimproc'
-Bundle 'vim-jp/vimdoc-ja'
-"Bundle 'w0ng/vim-hybrid'
-Bundle 'tpope/vim-dispatch'
-Bundle 't9md/vim-quickhl'
-Bundle 'a.vim'
 Bundle 'matchit.zip'
-"Bundle 'diffchar.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
-Bundle 'cohama/agit.vim'
-"Bundle 'summerfruit256.vim'
-"Bundle 'taglist.vim'
-Bundle 'vcscommand.vim'
-"Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'Yggdroot/indentLine'
-Bundle 'cohlin/vim-colorschemes'
 Bundle 'muellan/am-colors'
-Bundle 'freeo/vim-kalisi'
+"Bundle 'nathanaelkane/vim-indent-guides'
+"Bundle 'summerfruit256.vim'
+Bundle 't9md/vim-quickhl'
+"Bundle 'taglist.vim'
+Bundle 'tpope/vim-dispatch'
+Bundle 'tpope/vim-fugitive'
+Bundle 'vcscommand.vim'
+Bundle 'vim-jp/vimdoc-ja'
+Bundle 'vim-syntastic/syntastic'
+"Bundle 'w0ng/vim-hybrid'
 filetype plugin indent on     " required! 
 
 if !has('gui_running')
@@ -134,6 +136,12 @@ set splitbelow
 set laststatus=2
 set showtabline=2
 set statusline=%<%f\ %m%r%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l/%L,%v
+
+" syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
 set tabline=%!MakeTabLine()
 "highlight StatusLine cterm=NONE ctermfg=white ctermbg=35
 "highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=grey
@@ -330,6 +338,13 @@ let g:netrw_liststyle = 3
 "            \   'inactive': [ 'filename' ]
 "            \ },
 "            \ }
+
+"syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_python_checkers = ['pyflakes']
 
 if filereadable($HOME."/.vimrc_local")
     source $HOME/.vimrc_local
