@@ -9,6 +9,7 @@ create_dot_files:
 	    ln -si $(DIR)/tmux.conf .tmux.conf; \
 	    ln -si $(DIR)/vimrc .vimrc; \
 	    ln -si $(DIR)/zprofile .zprofile; \
+	    ln -si $(DIR)/zshenv .zshenv; \
 	    ln -si $(DIR)/zshrc .zshrc; \
 	    ln -si $(DIR)/bashrc .bashrc; \
 	    ln -si $(DIR)/bash_profile .bash_profile; \

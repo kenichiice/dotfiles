@@ -1,5 +1,3 @@
-export PATH=~/bin:$PATH
-
 stty stop undef
 stty start undef
 
