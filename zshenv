@@ -6,3 +6,5 @@ path=(
     /usr/local/sbin(N-/)
     /usr/sbin(N-/)
 )
+
+source ~/.zshenv_local
