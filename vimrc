@@ -28,12 +28,13 @@ Bundle 'muellan/am-colors'
 "Bundle 'summerfruit256.vim'
 Bundle 't9md/vim-quickhl'
 "Bundle 'taglist.vim'
-Bundle 'tpope/vim-dispatch'
+"Bundle 'tpope/vim-dispatch'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vcscommand.vim'
 Bundle 'vim-jp/vimdoc-ja'
 Bundle 'vim-syntastic/syntastic'
 "Bundle 'w0ng/vim-hybrid'
+Bundle 'skywind3000/asyncrun.vim'
 filetype plugin indent on     " required! 
 
 if !has('gui_running')
@@ -58,6 +59,7 @@ set history=1000
 set scrolloff=100
 set backspace=indent,eol,start
 set wildmode=list:longest
+set wildignore=tags,*.o
 set ambiwidth=double
 "set ambiwidth=single
 
@@ -345,6 +347,9 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes']
+let g:syntastic_mode_map = {
+    \ "mode": "active",
+    \ "passive_filetypes": ["c", "cpp"] }
 
 if filereadable($HOME."/.vimrc_local")
     source $HOME/.vimrc_local
