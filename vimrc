@@ -74,6 +74,10 @@ set makeprg=env\ LANG=C\ make
 " helpがひけないので。http://d.hatena.ne.jp/vikke_bsd/20110926
 set notagbsearch
 
+set breakindent
+set breakindentopt=shift:4
+set linebreak
+
 syntax on
 set background=light
 "colorscheme hybrid-light
@@ -354,3 +358,9 @@ let g:syntastic_mode_map = {
 if filereadable($HOME."/.vimrc_local")
     source $HOME/.vimrc_local
 endif
+
+"asyncrun
+command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
+augroup vimrc
+    autocmd User AsyncRunStart botright copen 10
+augroup END

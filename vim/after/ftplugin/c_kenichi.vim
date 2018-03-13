@@ -16,12 +16,10 @@ setlocal path+=/home/kenichi/include
 
 setlocal matchpairs+=<:>
 
-augroup c_kenichi
-    autocmd!
-    highlight nagasugi ctermfg=196
-    autocmd VimEnter,WinEnter *.{c,cpp,h} call matchadd("nagasugi", '.\%>81v')
-augroup END
-"set colorcolumn=81
+"augroup c_kenichi
+"    autocmd!
+"    highlight nagasugi ctermfg=196
+"    autocmd VimEnter,WinEnter *.{c,cpp,h} call matchadd("nagasugi", '.\%>81v')
+"augroup END
 
-"highlight nagasugi ctermfg=red
-"autocmd FileType c,cpp call matchadd("nagasugi", '.\%>81v')
+"set colorcolumn=81
