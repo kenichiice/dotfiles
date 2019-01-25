@@ -7,11 +7,6 @@ case "${TERM}" in screen)
     }
 esac
 
-export EDITOR=vim
-export PAGER=less
-export GREP_OPTIONS=--color=auto
-export TERM=xterm-256color
-
 autoload -U compinit
 compinit
 

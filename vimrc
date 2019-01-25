@@ -32,9 +32,11 @@ Bundle 't9md/vim-quickhl'
 Bundle 'tpope/vim-fugitive'
 Bundle 'vcscommand.vim'
 Bundle 'vim-jp/vimdoc-ja'
-Bundle 'vim-syntastic/syntastic'
+"Bundle 'vim-syntastic/syntastic'
 "Bundle 'w0ng/vim-hybrid'
 Bundle 'skywind3000/asyncrun.vim'
+Bundle 'tpope/vim-rails'
+Plugin 'posva/vim-vue'
 filetype plugin indent on     " required! 
 
 if !has('gui_running')
@@ -199,7 +201,8 @@ function! MakeTabLine()
 endfunction
 
 nnoremap <Space> <C-F>
-nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*.{c,cc,cpp,h,hpp,cu,py}
+nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ app/**
+"nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*.{c,cc,cpp,h,hpp,cu,py}
 
 cnoremap <C-A> <Home>
 cnoremap <C-F> <Right>
@@ -345,15 +348,15 @@ let g:netrw_liststyle = 3
 "            \ },
 "            \ }
 
-"syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['pyflakes']
-let g:syntastic_mode_map = {
-    \ "mode": "active",
-    \ "passive_filetypes": ["c", "cpp"] }
+""syntastic
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 0
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_python_checkers = ['pyflakes']
+"let g:syntastic_mode_map = {
+"    \ "mode": "active",
+"    \ "passive_filetypes": ["c", "cpp"] }
 
 if filereadable($HOME."/.vimrc_local")
     source $HOME/.vimrc_local

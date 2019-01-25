@@ -16,4 +16,6 @@ create_dot_files:
 	    if [ -d .vim ]; \
 	    then echo ".vimは存在しています!"; \
 	    else ln -si $(DIR)/vim .vim; \
-	    fi
+	    fi; \
+	    mkdir .vimundo
+	git submodule update --init
