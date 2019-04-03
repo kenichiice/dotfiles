@@ -201,7 +201,7 @@ function! MakeTabLine()
 endfunction
 
 nnoremap <Space> <C-F>
-nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ app/**
+nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **
 "nnoremap <C-G> :vimgrep /\<<C-R><C-W>\>/ **/*.{c,cc,cpp,h,hpp,cu,py}
 
 cnoremap <C-A> <Home>
