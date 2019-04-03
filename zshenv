@@ -3,6 +3,7 @@ path=(
     $HOME/bin(N-/)
     $HOME/.local/bin(N-/)
     $HOME/.gem/bin(N-/)
+    $HOME/.rbenv/bin(N-/)
     /bin(N-/)
     $path
     /usr/bin(N-/)
