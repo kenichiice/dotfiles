@@ -17,6 +17,7 @@ bindkey -e
 #bindkey '^W^D' kill-word
 
 ulimit -c unlimited
+umask 022
 
 PROMPT="[%~]
 (%U%m%u) %n%# "
