@@ -3,7 +3,8 @@ path=(
     $HOME/bin(N-/)
     $HOME/.local/bin(N-/)
     $HOME/.gem/bin(N-/)
-    $HOME/.rbenv/bin(N-/)
+    $HOME/.anyenv/bin(N-/)
+    $HOME/go/bin(N-/)
     /bin(N-/)
     $path
     /usr/bin(N-/)

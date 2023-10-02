@@ -37,6 +37,8 @@ Bundle 'vim-jp/vimdoc-ja'
 Bundle 'skywind3000/asyncrun.vim'
 Bundle 'tpope/vim-rails'
 Plugin 'posva/vim-vue'
+Plugin 'editorconfig/editorconfig-vim'
+
 filetype plugin indent on     " required! 
 
 if !has('gui_running')

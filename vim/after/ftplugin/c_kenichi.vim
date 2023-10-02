@@ -7,7 +7,7 @@ setlocal shiftwidth=2
 setlocal softtabstop=2
 setlocal expandtab
 
-setlocal cinoptions=:0,g0,t0,N-s,k2s,m1,i2s,+2s
+setlocal cinoptions=:0,g0,t0,N-s,(s,k0,m1,i1s,+1s
 "setlocal cinoptions=:0,g0,t0,N-s,(s,k2s,m1,i2s,Us
 
 setlocal path+=include
