@@ -1,45 +1,7 @@
 set fileencodings=utf-8,cp932,euc-jp
 scriptencoding utf-8
 
-"" vundle
-"set nocompatible               " be iMproved
-filetype off                   " required!
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
-Bundle 'Shougo/unite-outline'
-Bundle 'Shougo/unite.vim'
-Bundle 'Shougo/vimproc'
-"Bundle 'Shougo/neocomplete'
-"Bundle 'Shougo/unite-build'
-Bundle 'Vimjas/vim-python-pep8-indent'
-"Bundle 'Yggdroot/indentLine'
-Bundle 'a.vim'
-Bundle 'cohama/agit.vim'
-Bundle 'cohlin/vim-colorschemes'
-"Bundle 'diffchar.vim'
-Bundle 'freeo/vim-kalisi'
-Bundle 'gregsexton/gitv'
-"Bundle 'itchyny/lightline.vim'
-"Bundle 'kana/vim-smartinput'
-Bundle 'matchit.zip'
-Bundle 'muellan/am-colors'
-"Bundle 'nathanaelkane/vim-indent-guides'
-"Bundle 'summerfruit256.vim'
-Bundle 't9md/vim-quickhl'
-"Bundle 'taglist.vim'
-"Bundle 'tpope/vim-dispatch'
-Bundle 'tpope/vim-fugitive'
-Bundle 'vcscommand.vim'
-Bundle 'vim-jp/vimdoc-ja'
-"Bundle 'vim-syntastic/syntastic'
-"Bundle 'w0ng/vim-hybrid'
-Bundle 'skywind3000/asyncrun.vim'
-Bundle 'tpope/vim-rails'
-Plugin 'posva/vim-vue'
-Plugin 'editorconfig/editorconfig-vim'
-
-filetype plugin indent on     " required! 
+filetype plugin indent on
 
 if !has('gui_running')
     set t_Co=256
@@ -147,11 +109,6 @@ set laststatus=2
 set showtabline=2
 set statusline=%<%f\ %m%r%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l/%L,%v
 
-" syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
 set tabline=%!MakeTabLine()
 "highlight StatusLine cterm=NONE ctermfg=white ctermbg=35
 "highlight StatusLineNC cterm=NONE ctermfg=white ctermbg=grey
@@ -216,156 +173,10 @@ nnoremap <C-]> g<C-]>
 nnoremap <C-W><C-]> <C-W>g<C-]>
 nnoremap <C-W>] <C-W>g<C-]>
 
-" for include file searching
-"set path+=include
-"set path+=/usr/include/c++/4.8.2
-"set path+=/home/kenichi/include
-
-" pathogen.vim
-"""call pathogen#runtime_append_all_bundles()
-"""call pathogen#helptags()
-"""
-" neocomplcache
-"let g:neocomplcache_enable_at_startup = 1
-"let g:neocomplcache_enable_auto_select = 1
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-e> neocomplcache#cancel_popup()
-
-"neocomplete
-"let g:neocomplete#enable_at_startup = 1
-"let g:neocomplete#enable_auto_select = 0
-"inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-e> neocomplete#cancel_popup()
-
-" unite.vim
-let g:unite_enable_start_insert = 1
-let g:unite_winheight = 10
-"let g:unite_enable_ignore_case = 1
-"let g:unite_enable_smart_case = 1
-"call unite#set_buffer_name_option('default', 'ignorecase', 1)
-"call unite#set_buffer_name_option('default', 'smartcase', 1)
-"call unite#custom#profile('source/buffer', 'context.ignorecase', 1)
-"call unite#custom#profile('source/buffer', 'context.smartcase', 1)
-"call unite#custom#profile('source/buffer', 'context', {
-call unite#custom#profile('default', 'context', {
-            \   'ignorecase' : 1,
-            \   'smartcase' : 1,
-            \ })
-
-noremap <C-N> :Unite buffer<CR>
-nnoremap <silent> \f :Unite outline<CR>
-
-" quickhl
-nmap m <Plug>(quickhl-manual-this)
-nmap <Leader>m <Plug>(quickhl-manual-reset)
-
-"" diffchar
-"let g:DiffUnit = "Word3"
-"""nnoreamp <Leader>c <Plug>ToggleDiffCharAllLines
-"nmap <silent> <Leader>c <Plug>ToggleDiffCharCurrentLine
-"""nnoremap <C-y> <Plug>ToggleDiffCharCurrentLine
-""nmap <silent> <C-y> <Plug>ToggleDiffCharAllLines
-
-"for yankring
-"set viminfo+=!
-"let yankring_replace_n_pkey = ',p'
-"let yankring_replace_n_nkey = ',n'
-
-" fuzzyfinder
-"nnoremap <C-N> :FufBuffer!<CR>
-"nnoremap <C-P> :FufMruFile!<CR>
-"let g:fuf_keyOpenSplit = '<C-s>'
-"let g:fuf_keyPrevPattern = ''
-"let g:fuf_modesDisable = [ 'mrucmd' ]
-
-" autocomplpop
-"let g:acp_ignorecaseOption = 0
-
 " netrw
 let g:netrw_liststyle = 3
-
-" yanktmp.vim
-"map <silent> sy :call YanktmpYank()<CR>
-"nmap <silent> sp :call YanktmpPaste_p()<CR>
-"nmap <silent> sP :call YanktmpPaste_P()<CR>
-
-" gtags.vim
-"nmap  :Gtags -r <C-R><C-W><CR>
-"nmap  :GtagsCursor<CR>W
-
-" taglist.vim
-"let Tlist_Auto_Open=1
-"let Tlist_Inc_Winwidth=0
-""let Tlist_WinWidth=35
-"let Tlist_Display_Tag_Scope = 0
-""let Tlist_Display_Prototype=1
-""let Tlist_Exit_OnlyWindow=1
-""let Tlist_Use_Horiz_Window = 1
-""let Tlist_Use_Right_Window = 1
-"nnoremap <silent> \f :TlistToggle<CR>
-
-" ShowFunc.vim
-"""let g:ShowFuncScanType = "current"
-"""let g:ShowFuncSortType = "no"
-"""map  NewKey   <Plug>ShowFunc
-"""map! NewKey   <Plug>ShowFunc
-"""map  \f   <Plug>ShowFunc
-"""map! \f   <Plug>ShowFunc 
-
-"" lightline
-"let g:lightline = {
-"            \ 'colorscheme': 'kenichi',
-"            \ 'component': {
-"            \   'rows': '%L',
-"            \   'pwd': '%.55(%{fnamemodify(getcwd(), ":~")}%)',
-"            \   'bom': '%{&bomb?"BOM":""}',
-"            \ },
-"            \ 'tab_component': {
-"            \   'relativepath': '%f',
-"            \ },
-"            \ 'separator': { 'left': '●', 'right': '●' },
-"            \ 'subseparator': { 'left': '|', 'right': '|' },
-"            \ 'active': {
-"            \   'left': [ [ 'mode', 'paste' ],
-"            \             [ 'relativepath', 'modified', 'readonly' ],
-"            \             [ 'bom' ],
-"            \             [ 'fileencoding' ],
-"            \             [ 'fileformat' ] ],
-"            \   'right': [ [ 'lineinfo' ], [ 'rows' ], [ 'filetype' ] ]
-"            \ },
-"            \ 'inactive': {
-"            \   'left': [ [ 'relativepath', 'modified', 'readonly'],
-"            \             [ 'bom' ],
-"            \             [ 'fileencoding'],
-"            \             [ 'fileformat'] ],
-"            \   'right': [ [ 'lineinfo' ], [ 'rows' ], [ 'filetype' ] ]
-"            \ },
-"            \ 'tabline': {
-"            \   'left': [ [ 'pwd' ], [ 'tabs' ] ],
-"            \   'right': [ [] ]
-"            \ },
-"            \ 'tab': {
-"            \   'active': [ 'filename' ],
-"            \   'inactive': [ 'filename' ]
-"            \ },
-"            \ }
-
-""syntastic
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-"let g:syntastic_python_checkers = ['pyflakes']
-"let g:syntastic_mode_map = {
-"    \ "mode": "active",
-"    \ "passive_filetypes": ["c", "cpp"] }
 
 if filereadable($HOME."/.vimrc_local")
     source $HOME/.vimrc_local
 endif
 
-"asyncrun
-command! -bang -nargs=* -complete=file Make AsyncRun -program=make @ <args>
-augroup vimrc
-    autocmd User AsyncRunStart botright copen 10
-augroup END
