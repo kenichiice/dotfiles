@@ -13,6 +13,7 @@ path=(
     /usr/sbin(N-/)
 )
 
+export LANG=ja_JP.utf8
 export EDITOR=vim
 export PAGER=less
 #export GREP_OPTIONS=--color=auto
