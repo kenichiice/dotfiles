@@ -3,8 +3,8 @@ setlocal cindent
 syntax match CFunction /[a-zA-Z_]\w* *(\@=/
 highlight CFunction ctermfg=darkcyan
 
-setlocal shiftwidth=2
-setlocal softtabstop=2
+setlocal shiftwidth=4
+setlocal softtabstop=4
 setlocal expandtab
 
 setlocal cinoptions=:0,g0,t0,N-s,(s,k0,m1,i1s,+1s
